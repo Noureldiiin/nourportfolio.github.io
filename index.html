@@ -339,7 +339,7 @@
     <!-- Blog End -->
 
 
-    <!-- Contact Start -->
+ <!-- Contact Start -->
 <div class="container-fluid py-5" id="contact">
     <div class="container">
         <div class="position-relative d-flex align-items-center justify-content-center">
@@ -384,6 +384,42 @@
     </div>
 </div>
 <!-- Contact End -->
+
+<!-- Script for handling form submission and displaying messages -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the form element
+        const contactForm = document.getElementById('contactForm');
+
+        // Add event listener for form submission
+        contactForm.addEventListener('submit', function (event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Make a fetch request to the server
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+            })
+            .then(response => {
+                // Check if the response status is 200 (OK)
+                if (response.ok) {
+                    // Display a success message (you can customize this part)
+                    alert('Your message has been sent successfully!');
+                    // Optionally, you can clear the form fields
+                    contactForm.reset();
+                } else {
+                    // Display an error message (you can customize this part)
+                    alert('Error sending the message. Please try again later.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+
 
 
 
